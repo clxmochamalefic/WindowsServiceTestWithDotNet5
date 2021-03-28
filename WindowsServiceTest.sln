@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsServiceTestClient", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{F772FA8C-256D-4352-8ADA-BFF902919CBF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Installer", "Installer\Installer.csproj", "{915C572D-033E-4DCE-880E-96B814D9BAA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F772FA8C-256D-4352-8ADA-BFF902919CBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F772FA8C-256D-4352-8ADA-BFF902919CBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F772FA8C-256D-4352-8ADA-BFF902919CBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{915C572D-033E-4DCE-880E-96B814D9BAA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{915C572D-033E-4DCE-880E-96B814D9BAA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{915C572D-033E-4DCE-880E-96B814D9BAA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{915C572D-033E-4DCE-880E-96B814D9BAA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
