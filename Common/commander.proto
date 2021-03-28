@@ -1,0 +1,28 @@
+﻿syntax = "proto3";
+
+// 名前空間の定義
+option csharp_namespace = "Common";
+
+// google.protobuf.Empty を使用するためにインポート
+import "google/protobuf/empty.proto";
+// google.protobuf.Timestamp を使用するためにインポート
+import "google/protobuf/timestamp.proto";
+
+// プロセス間通信に使用するインターフェースの定義
+service Commander {
+	// インターフェース: 気象庁から取得していた1時間以内の気象予報情報
+	rpc FetchWeather (google.protobuf.Empty) returns (Response);
+	// インターフェース: 気象庁から取得していた任意の前の時間の気象予報情報
+	rpc FindWeather (Request) returns (Response);
+}
+
+// リクエスト電文の定義
+message Request {
+	int32 HourAgo = 1;
+}
+
+// レスポンス電文の定義
+message Response {
+	google.protobuf.Timestamp ReportedAt = 1;
+	string Weather = 2;
+}

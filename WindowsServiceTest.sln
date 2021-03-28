@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsServiceTest", "WindowsServiceTest\WindowsServiceTest.csproj", "{E36CB901-B761-493A-990E-0758C414BDBC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsServiceTestClient", "WindowsServiceTestClient\WindowsServiceTestClient.csproj", "{40042AB4-38B0-4BE4-AF09-0D7B30EC657B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{F772FA8C-256D-4352-8ADA-BFF902919CBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{E36CB901-B761-493A-990E-0758C414BDBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E36CB901-B761-493A-990E-0758C414BDBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E36CB901-B761-493A-990E-0758C414BDBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40042AB4-38B0-4BE4-AF09-0D7B30EC657B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40042AB4-38B0-4BE4-AF09-0D7B30EC657B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40042AB4-38B0-4BE4-AF09-0D7B30EC657B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40042AB4-38B0-4BE4-AF09-0D7B30EC657B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F772FA8C-256D-4352-8ADA-BFF902919CBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F772FA8C-256D-4352-8ADA-BFF902919CBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F772FA8C-256D-4352-8ADA-BFF902919CBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F772FA8C-256D-4352-8ADA-BFF902919CBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
