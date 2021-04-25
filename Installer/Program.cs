@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Xml.Linq;
+using WixSharp;
+using WixSharp.Bootstrapper;
 
 namespace Installer
 {
@@ -34,6 +36,8 @@ namespace Installer
                 );
 
                 var project = new WixSharp.ManagedProject("ウィンドウズサービステスト", dir);
+
+                project.Platform = Platform.x64;
 
                 // 日本語をインストーラ及びWiXで仕様するためのおまじない
                 project.Codepage = "932";
@@ -77,10 +81,75 @@ namespace Installer
 
                 project.LicenceFile = @"Eula.rtf";
 
-                project.PreserveTempFiles = true;
-                project.WixSourceGenerated += _WixSourceGenerated;
+                // インストール時権限昇格
+                project.InstallPrivileges = InstallPrivileges.elevated;
+                project.InstallScope = InstallScope.perMachine;
 
-                project.BuildMsi();
+                project.PreserveTempFiles = true;
+
+                var projectMsi = project.BuildMsi();
+
+                var bootstrapper = new Bundle(
+                    "ウィンドウズサービステスト_バンドルインストーラ",
+                    new ExePackage()
+                    {
+                        Id = "DotNet5DesktopRuntime",
+                        Name = "dotnet5-windowsdesktop-runtime-5.0-win-x64.exe",
+                        Vital = true,
+                        Permanent = false,
+                        DownloadUrl = @"https://download.visualstudio.microsoft.com/download/pr/7a5d15ae-0487-428d-8262-2824279ccc00/6a10ce9e632bce818ce6698d9e9faf39/windowsdesktop-runtime-5.0.4-win-x64.exe",
+                        InstallCommand = "/install /quiet",
+                        RepairCommand = "/repair /quiet",
+                        UninstallCommand = "/uninstall /quiet",
+                        LogPathVariable = "dotnet5desktopruntime.log",
+                        Compressed = true,
+
+                        // RemotePayloadは以下のコマンドで取得可能
+                        // heat payload <バンドルしたいexeのバイナリのパス> -out .\remote.xml
+                        RemotePayloads = new[]
+                        {
+                            new RemotePayload()
+                            {
+                                ProductName = "Microsoft Windows Desktop Runtime - 5.0.4 (x64)",
+                                Description = "Microsoft Windows Desktop Runtime - 5.0.4 (x64)",
+                                Hash="33FBCDB6B6F052FCC26B4EF850B81ED5F2C10B02",
+                                Size = 54790696,
+                                Version = "5.0.4.29817".ToRawVersion(),
+                                CertificatePublicKey = "3756E9BBF4461DCD0AA68E0D1FCFFA9CEA47AC18",
+                                CertificateThumbprint = "2485A7AFA98E178CB8F30C9838346B514AEA4769"
+                            }
+                        }
+                    },
+                    new MsiPackage(projectMsi)
+                );
+
+                // ランタイムバンドルインストーラのバージョン
+                bootstrapper.Version = new Version("1.0.0.0");
+
+                // ランタイムバンドルインストーラのアップグレードコード (変更厳禁)
+                bootstrapper.UpgradeCode = new Guid("bf3b1aeb-12c5-4401-ad23-6a49f905bd55");
+
+                // ランタイムバンドルインストーラのアプリケーションスタイルの定義
+                bootstrapper.Application = new LicenseBootstrapperApplication();
+                bootstrapper.Application.LicensePath = @".\Eula.rtf";
+
+                bootstrapper.Application.LocalizationFile = "thm.wxl";
+
+                // インストール時のOption非表示
+                bootstrapper.Application.SuppressOptionsUI = true;
+                // アンインストール時の修復を非表示
+                bootstrapper.Application.SuppressRepair = true;
+
+                // 一次領域を使用するか
+                bootstrapper.PreserveTempFiles = true;
+                // Wixの必須パラメータの定義？は行わない
+                bootstrapper.SuppressWixMbaPrereqVars = false;
+
+                // インストーラ名の定義
+                bootstrapper.OutFileName = "ウィンドウズサービステスト_バンドルインストーラ";
+
+                // ランタイムバンドルインストーラの作成
+                bootstrapper.Build();
             }
             catch (Exception ex)
             {

@@ -3,13 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsServiceTest", "WindowsServiceTest\WindowsServiceTest.csproj", "{E36CB901-B761-493A-990E-0758C414BDBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsServiceTest", "WindowsServiceTest\WindowsServiceTest.csproj", "{E36CB901-B761-493A-990E-0758C414BDBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsServiceTestClient", "WindowsServiceTestClient\WindowsServiceTestClient.csproj", "{40042AB4-38B0-4BE4-AF09-0D7B30EC657B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsServiceTestClient", "WindowsServiceTestClient\WindowsServiceTestClient.csproj", "{40042AB4-38B0-4BE4-AF09-0D7B30EC657B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{F772FA8C-256D-4352-8ADA-BFF902919CBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{F772FA8C-256D-4352-8ADA-BFF902919CBF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Installer", "Installer\Installer.csproj", "{915C572D-033E-4DCE-880E-96B814D9BAA0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E36CB901-B761-493A-990E-0758C414BDBC} = {E36CB901-B761-493A-990E-0758C414BDBC}
+		{F772FA8C-256D-4352-8ADA-BFF902919CBF} = {F772FA8C-256D-4352-8ADA-BFF902919CBF}
+		{40042AB4-38B0-4BE4-AF09-0D7B30EC657B} = {40042AB4-38B0-4BE4-AF09-0D7B30EC657B}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
